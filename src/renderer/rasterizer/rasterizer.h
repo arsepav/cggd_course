@@ -110,12 +110,12 @@ namespace cg::renderer
 			vertices[2] = vertex_buffer->item(index_buffer->item(vertex_id++));
 		
 			for (auto& vertex : vertices){
-				float4 coords{vertex.x, vertex.y, vertex.z, 1.0f};
+				float4 coords{vertex.position.x, vertex.position.y, vertex.position.z, 1.0f};
 				auto processed_vertex = vertex_shader(coords, vertex);
 				vertex.position = processed_vertex.first.xyz() / processed_vertex.first.w;
 			
-				vertex.position.x = (vertex.x + 1.0f) * width * 0.5f;
-				vertex.position.y = (-vertex.y + 1.0f) * height * 0.5f;
+				vertex.position.x = (vertex.position.x + 1.0f) * width * 0.5f;
+				vertex.position.y = (-vertex.position.y + 1.0f) * height * 0.5f;
 			}
 		}
 		// TODO Lab: 1.04 Implement `cg::world::camera` class
