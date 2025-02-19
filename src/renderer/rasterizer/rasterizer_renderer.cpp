@@ -50,6 +50,11 @@ void cg::renderer::rasterization_renderer::render()
 		return std::make_pair(processed, data);
 	};
 
+	rasterizer->pixel_shader = [](cg::vertex vertex_data, float z){
+		return cg::color::from_float3(vertex_data.ambient);
+	};
+
+
 	auto start = std::chrono::high_resolution_clock::now();
 	// TODO Lab: 1.02 Implement image clearing & saving in `cg::renderer::rasterization_renderer` class
 	// TODO Lab: 1.04 Implement `vertex_shader` lambda for the instance of `cg::renderer::rasterizer`
